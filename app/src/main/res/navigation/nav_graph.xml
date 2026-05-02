@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.finalprojectpam.ui.home.HomeFragment"
+        android:label="Beranda"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_story"
+            app:destination="@id/storyFragment" />
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_home_to_score"
+            app:destination="@id/scoreFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storyFragment"
+        android:name="com.example.finalprojectpam.ui.story.StoryFragment"
+        android:label="Cerita"
+        tools:layout="@layout/fragment_story">
+        <argument
+            android:name="storyFileName"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.finalprojectpam.ui.profile.ProfileFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.example.finalprojectpam.ui.score.ScoreFragment"
+        android:label="Riwayat Nilai"
+        tools:layout="@layout/fragment_score" />
+
+</navigation>

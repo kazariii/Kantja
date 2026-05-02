@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tv_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Kamu"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tv_total_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Skor: 0"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tv_stories_completed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerita Selesai: 0"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama kamu"
+        android:layout_marginBottom="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simpan" />
+
+</LinearLayout>

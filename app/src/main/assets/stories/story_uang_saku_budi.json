@@ -1,0 +1,80 @@
+{
+  "id": "story_uang_saku_budi",
+  "title": "Uang Saku Budi",
+  "description": "Bantu Budi membuat keputusan keuangan yang bijak dengan uang sakunya! Belajar menabung, berhemat, dan berbagi.",
+  "category": "menabung",
+  "difficulty": "mudah",
+  "thumbnailRes": "story_budi",
+  "maxScore": 70,
+  "scenes": [
+    {
+      "id": "scene_001",
+      "order": 1,
+      "narrative": "Hari ini Budi menerima uang saku Rp 50.000 dari Ibu. Di perjalanan ke sekolah, Budi melewati toko mainan dan melihat mainan robot keren seharga Rp 45.000. Budi sangat menginginkannya! Tapi Budi juga ingat ingin menabung untuk membeli sepeda. Apa yang harus dilakukan Budi?",
+      "imageRes": "scene_toko_mainan",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_001a",
+          "text": "Beli mainan robot sekarang!",
+          "consequence": "Budi membeli mainan robot dan uangnya tinggal Rp 5.000. Mainannya memang seru, tapi impian sepedanya semakin jauh.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_002"
+        },
+        {
+          "id": "choice_001b",
+          "text": "Tahan diri dan simpan uangnya dulu",
+          "consequence": "Budi memilih untuk menabung. Ibu memuji keputusan Budi yang bijak! Uang Budi masih utuh Rp 50.000.",
+          "scoreValue": 20,
+          "nextSceneId": "scene_002"
+        }
+      ]
+    },
+    {
+      "id": "scene_002",
+      "order": 2,
+      "narrative": "Di kantin sekolah, perut Budi berbunyi keroncongan. Ada dua pilihan: membeli nasi bungkus bergizi seharga Rp 10.000, atau membeli es krim dan keripik seharga Rp 25.000. Keduanya terlihat menggoda. Mana yang dipilih Budi?",
+      "imageRes": "scene_kantin",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_002a",
+          "text": "Beli es krim dan keripik saja!",
+          "consequence": "Budi menghabiskan Rp 25.000 untuk jajanan. Enak memang, tapi sore harinya Budi jadi lapar lagi dan uangnya berkurang banyak.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_003"
+        },
+        {
+          "id": "choice_002b",
+          "text": "Beli nasi bungkus yang bergizi",
+          "consequence": "Budi membeli makanan sehat dan kenyang seharian. Tubuhnya berenergi dan uangnya hemat. Pilihan yang cerdas!",
+          "scoreValue": 20,
+          "nextSceneId": "scene_003"
+        }
+      ]
+    },
+    {
+      "id": "scene_003",
+      "order": 3,
+      "narrative": "Pulang sekolah, teman Budi bernama Dito kelihatan sedih. Ternyata Dito lupa membawa uang dan tidak bisa membeli buku tulis untuk PR besok. Budi masih punya sisa uang. Apa yang dilakukan Budi?",
+      "imageRes": "scene_teman",
+      "isEndScene": true,
+      "choices": [
+        {
+          "id": "choice_003a",
+          "text": "Pinjamkan uang Rp 5.000 kepada Dito",
+          "consequence": "Budi dengan senang hati membantu Dito. Dito sangat berterima kasih dan berjanji mengembalikannya besok. Berbagi itu membuat hati hangat!",
+          "scoreValue": 30,
+          "nextSceneId": null
+        },
+        {
+          "id": "choice_003b",
+          "text": "Simpan semua uang untuk tabunganku",
+          "consequence": "Budi menyimpan semua uangnya. Menabung memang penting, tapi kadang membantu teman yang kesusahan juga sama pentingnya.",
+          "scoreValue": 10,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}
