@@ -17,7 +17,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.finalprojectpam.data.local.preferences.AuthPreferences
 import com.example.finalprojectpam.ui.navigation.Screen
 
 @Composable
@@ -30,13 +29,7 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel) {
 
     LaunchedEffect(authState) {
         if (authState is AuthState.Success) {
-            val role = (authState as AuthState.Success).role
-            val route = if (role == AuthPreferences.ROLE_PARENT) {
-                Screen.ParentDashboard.route
-            } else {
-                Screen.ChildDashboard.route
-            }
-            navController.navigate(route) {
+            navController.navigate(Screen.Home.route) {
                 popUpTo(Screen.Login.route) { inclusive = true }
             }
             viewModel.resetState()
@@ -75,7 +68,8 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel) {
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            enabled = authState !is AuthState.Loading
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -88,6 +82,7 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel) {
             singleLine = true,
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            enabled = authState !is AuthState.Loading,
             trailingIcon = {
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(
@@ -112,9 +107,18 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel) {
 
         Button(
             onClick = { viewModel.login(email, password) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            enabled = authState !is AuthState.Loading
         ) {
-            Text("Masuk")
+            if (authState is AuthState.Loading) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(20.dp),
+                    strokeWidth = 2.dp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            } else {
+                Text("Masuk")
+            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))

@@ -9,15 +9,17 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.finalprojectpam.data.local.entity.ScoreRecordEntity
+import com.example.finalprojectpam.data.model.ScoreRecord
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,9 +67,18 @@ fun ScoreScreen(navController: NavController, viewModel: ScoreViewModel = viewMo
 }
 
 @Composable
-private fun ScoreCard(record: ScoreRecordEntity) {
-    val percentage = (record.score.coerceAtLeast(0) * 100) / record.maxScore
-    val dateStr = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale("id")).format(Date(record.completedAt))
+private fun ScoreCard(record: ScoreRecord) {
+    val percentage = (record.score.coerceAtLeast(0) * 100) / record.maxScore.coerceAtLeast(1)
+    val dateStr = remember(record.completedAt) {
+        try {
+            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)
+            sdf.timeZone = TimeZone.getTimeZone("UTC")
+            val date = sdf.parse(record.completedAt.take(19)) ?: Date()
+            SimpleDateFormat("dd MMM yyyy, HH:mm", Locale("id")).format(date)
+        } catch (e: Exception) {
+            "-"
+        }
+    }
 
     Card(modifier = Modifier.fillMaxWidth()) {
         Row(

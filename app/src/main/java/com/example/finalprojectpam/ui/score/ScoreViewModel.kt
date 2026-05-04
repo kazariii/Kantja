@@ -3,17 +3,27 @@ package com.example.finalprojectpam.ui.score
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalprojectpam.data.local.database.KancaDatabase
-import com.example.finalprojectpam.data.local.entity.ScoreRecordEntity
+import com.example.finalprojectpam.data.model.ScoreRecord
 import com.example.finalprojectpam.data.repository.UserRepository
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class ScoreViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val userRepository = UserRepository(KancaDatabase.getInstance(application))
+    private val userRepository = UserRepository()
 
-    val allScores: StateFlow<List<ScoreRecordEntity>> = userRepository.allScores
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
+    private val _allScores = MutableStateFlow<List<ScoreRecord>>(emptyList())
+    val allScores: StateFlow<List<ScoreRecord>> = _allScores.asStateFlow()
+
+    init {
+        loadScores()
+    }
+
+    private fun loadScores() {
+        viewModelScope.launch {
+            _allScores.value = userRepository.getAllScores()
+        }
+    }
 }

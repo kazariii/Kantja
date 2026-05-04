@@ -1,22 +1,39 @@
 package com.example.finalprojectpam.data.repository
 
-import com.example.finalprojectpam.data.local.preferences.AuthPreferences
+import com.example.finalprojectpam.data.model.UserProfile
+import com.example.finalprojectpam.data.remote.SupabaseClient
+import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.auth.providers.builtin.Email
+import io.github.jan.supabase.postgrest.postgrest
 
-class AuthRepository(private val prefs: AuthPreferences) {
+class AuthRepository {
 
-    fun register(name: String, email: String, password: String, role: String) =
-        prefs.register(name, email, password, role)
+    private val supabase = SupabaseClient.client
 
-    fun login(email: String, password: String): Boolean =
-        prefs.login(email, password)
+    suspend fun login(email: String, password: String): Result<Unit> = runCatching {
+        supabase.auth.signInWith(Email) {
+            this.email = email
+            this.password = password
+        }
+    }
 
-    fun logout() = prefs.logout()
+    suspend fun register(name: String, email: String, password: String): Result<Unit> = runCatching {
+        supabase.auth.signUpWith(Email) {
+            this.email = email
+            this.password = password
+        }
+        val userId = supabase.auth.currentUserOrNull()?.id
+            ?: error("Gagal mendapatkan ID pengguna setelah registrasi")
+        supabase.postgrest["profiles"].upsert(
+            UserProfile(id = userId, name = name)
+        )
+    }
 
-    fun isLoggedIn(): Boolean = prefs.isLoggedIn()
+    suspend fun logout() {
+        supabase.auth.signOut()
+    }
 
-    fun isRegistered(): Boolean = prefs.isRegistered()
+    fun isLoggedIn(): Boolean = supabase.auth.currentUserOrNull() != null
 
-    fun getName(): String? = prefs.getName()
-
-    fun getRole(): String? = prefs.getRole()
+    fun getCurrentUserId(): String? = supabase.auth.currentUserOrNull()?.id
 }

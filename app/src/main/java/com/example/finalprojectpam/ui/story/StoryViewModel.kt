@@ -3,8 +3,6 @@ package com.example.finalprojectpam.ui.story
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.finalprojectpam.data.local.database.KancaDatabase
-import com.example.finalprojectpam.data.local.entity.ScoreRecordEntity
 import com.example.finalprojectpam.data.model.Choice
 import com.example.finalprojectpam.data.model.Scene
 import com.example.finalprojectpam.data.model.Story
@@ -18,7 +16,7 @@ import kotlinx.coroutines.launch
 class StoryViewModel(application: Application) : AndroidViewModel(application) {
 
     private val storyRepository = StoryRepository(application)
-    private val userRepository = UserRepository(KancaDatabase.getInstance(application))
+    private val userRepository = UserRepository()
 
     private val _currentStory = MutableStateFlow<Story?>(null)
     val currentStory: StateFlow<Story?> = _currentStory.asStateFlow()
@@ -62,12 +60,10 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
     private fun saveScore(story: Story) {
         viewModelScope.launch {
             userRepository.saveScoreRecord(
-                ScoreRecordEntity(
-                    storyId = story.id,
-                    storyTitle = story.title,
-                    score = _totalScore.value,
-                    maxScore = story.maxScore
-                )
+                storyId = story.id,
+                storyTitle = story.title,
+                score = _totalScore.value,
+                maxScore = story.maxScore
             )
         }
     }

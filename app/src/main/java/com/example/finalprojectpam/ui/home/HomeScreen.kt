@@ -23,7 +23,8 @@ fun HomeScreen(
     authViewModel: AuthViewModel
 ) {
     val stories by viewModel.stories.collectAsState()
-    val userName = authViewModel.getUserName() ?: "Kanca"
+    val userProfile by viewModel.userProfile.collectAsState()
+    val userName = userProfile?.name ?: "Kanca"
 
     Scaffold(
         topBar = {
@@ -33,7 +34,7 @@ fun HomeScreen(
                     TextButton(onClick = {
                         authViewModel.logout()
                         navController.navigate(Screen.Login.route) {
-                            popUpTo(Screen.ChildDashboard.route) { inclusive = true }
+                            popUpTo(Screen.Home.route) { inclusive = true }
                         }
                     }) {
                         Text("Keluar")
