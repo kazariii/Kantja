@@ -20,6 +20,7 @@ import com.example.finalprojectpam.ui.home.HomeScreen
 import com.example.finalprojectpam.ui.navigation.Screen
 import com.example.finalprojectpam.ui.profile.ProfileScreen
 import com.example.finalprojectpam.ui.score.ScoreScreen
+import com.example.finalprojectpam.ui.kanca.KancaScreen
 import com.example.finalprojectpam.ui.langkah.LangkahScreen
 import com.example.finalprojectpam.ui.library.LibraryScreen
 import com.example.finalprojectpam.ui.story.StoryScreen
@@ -69,6 +70,9 @@ fun KancaApp() {
         }
         composable(Screen.Langkah.route) {
             LangkahScreen(navController = navController)
+        }
+        composable(Screen.Kanca.route) {
+            KancaScreen(navController = navController)
         }
         composable(Screen.Score.route) {
             ScoreScreen(navController = navController)

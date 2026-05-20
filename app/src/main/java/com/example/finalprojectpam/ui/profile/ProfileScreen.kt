@@ -201,7 +201,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = vi
                         Brush.linearGradient(listOf(Color(0xFFFFE7B8), Color(0xFFFFD18E)))
                     )
                     .border(2.dp, Color(0xFFFFC078), RoundedCornerShape(22.dp))
-                    .clickable { /* KANCA coming soon */ }
+                    .clickable { navController.navigate(Screen.Kanca.route) }
                     .padding(16.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
