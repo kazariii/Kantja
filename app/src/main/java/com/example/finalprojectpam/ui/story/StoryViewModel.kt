@@ -31,7 +31,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
     val isStoryFinished: StateFlow<Boolean> = _isStoryFinished.asStateFlow()
 
     fun loadStory(fileName: String) {
-        val story = storyRepository.loadStory("stories/$fileName")
+        val story = storyRepository.loadStory(fileName)
         _currentStory.value = story
         _currentScene.value = story?.scenes?.minByOrNull { it.order }
         _totalScore.value = 0
