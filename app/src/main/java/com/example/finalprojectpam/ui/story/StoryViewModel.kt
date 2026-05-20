@@ -30,9 +30,15 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
     private val _isStoryFinished = MutableStateFlow(false)
     val isStoryFinished: StateFlow<Boolean> = _isStoryFinished.asStateFlow()
 
-    // Consequence text yang sedang ditampilkan; null = tidak ada, tampilkan choices
     private val _consequence = MutableStateFlow<ConsequenceState?>(null)
     val consequence: StateFlow<ConsequenceState?> = _consequence.asStateFlow()
+
+    // Untuk progress bar
+    private val _sceneIndex = MutableStateFlow(0)
+    val sceneIndex: StateFlow<Int> = _sceneIndex.asStateFlow()
+
+    private val _totalScenes = MutableStateFlow(0)
+    val totalScenes: StateFlow<Int> = _totalScenes.asStateFlow()
 
     fun loadStory(fileName: String) {
         val story = storyRepository.loadStory(fileName)
@@ -41,6 +47,8 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
         _totalScore.value = 0
         _isStoryFinished.value = false
         _consequence.value = null
+        _sceneIndex.value = 0
+        _totalScenes.value = story?.scenes?.size ?: 0
     }
 
     fun onChoiceSelected(choice: Choice) {
@@ -53,7 +61,6 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
 
         val isLast = nextScene == null || nextScene.isEndScene
 
-        // Tahan di consequence dulu, baru lanjut setelah user tap "Lanjut"
         _consequence.value = ConsequenceState(
             text = choice.consequence,
             scoreGained = choice.scoreValue,
@@ -72,6 +79,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
             _isStoryFinished.value = true
         } else {
             _currentScene.value = state.nextScene
+            _sceneIndex.value = _sceneIndex.value + 1
         }
     }
 
@@ -90,6 +98,6 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
 data class ConsequenceState(
     val text: String,
     val scoreGained: Int,
-    val nextScene: com.example.finalprojectpam.data.model.Scene?,
+    val nextScene: Scene?,
     val isLastScene: Boolean
 )
