@@ -253,7 +253,7 @@ fun HomeScreen(
                         fontSize = 12.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = OrangeDeep,
-                        modifier = Modifier.clickable {}
+                        modifier = Modifier.clickable { navController.navigate(Screen.Library.route) }
                     )
                 }
 

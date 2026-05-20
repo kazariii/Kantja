@@ -9,4 +9,5 @@ sealed class Screen(val route: String) {
     object Story : Screen("story/{storyFileName}") {
         fun createRoute(storyFileName: String) = "story/$storyFileName"
     }
+    object Library : Screen("library")
 }
