@@ -24,6 +24,7 @@ fun StoryScreen(
     val currentScene by viewModel.currentScene.collectAsState()
     val totalScore by viewModel.totalScore.collectAsState()
     val isStoryFinished by viewModel.isStoryFinished.collectAsState()
+    val consequence by viewModel.consequence.collectAsState()
 
     LaunchedEffect(storyFileName) {
         viewModel.loadStory(storyFileName)
@@ -56,6 +57,7 @@ fun StoryScreen(
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
+            // Narrative card
             Card(
                 modifier = Modifier
                     .weight(1f)
@@ -70,23 +72,90 @@ fun StoryScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                text = "Apa pilihanmu?",
-                style = MaterialTheme.typography.titleSmall,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+            if (consequence != null) {
+                // ── Tampilkan consequence ─────────────────────────────────────
+                ConsequenceCard(
+                    text = consequence!!.text,
+                    scoreGained = consequence!!.scoreGained,
+                    isLastScene = consequence!!.isLastScene,
+                    onNext = { viewModel.onConsequenceDismissed() }
+                )
+            } else {
+                // ── Tampilkan pilihan ─────────────────────────────────────────
+                Text(
+                    text = "Apa pilihanmu?",
+                    style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
 
-            currentScene?.choices?.forEach { choice ->
-                Button(
-                    onClick = { viewModel.onChoiceSelected(choice) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                ) {
-                    Text(text = choice.text, textAlign = TextAlign.Center)
+                currentScene?.choices?.forEach { choice ->
+                    Button(
+                        onClick = { viewModel.onChoiceSelected(choice) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
+                    ) {
+                        Text(text = choice.text, textAlign = TextAlign.Center)
+                    }
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun ConsequenceCard(
+    text: String,
+    scoreGained: Int,
+    isLastScene: Boolean,
+    onNext: () -> Unit
+) {
+    val scoreLabel = when {
+        scoreGained > 0 -> "+$scoreGained XP"
+        scoreGained < 0 -> "$scoreGained XP"
+        else -> null
+    }
+    val scoreColor = if (scoreGained >= 0)
+        MaterialTheme.colorScheme.primary
+    else
+        MaterialTheme.colorScheme.error
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
+        )
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Akibat pilihanmu:",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer
+            )
+            if (scoreLabel != null) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = scoreLabel,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = scoreColor
+                )
+            }
+        }
+    }
+
+    Spacer(modifier = Modifier.height(12.dp))
+
+    Button(
+        onClick = onNext,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(text = if (isLastScene) "Lihat Hasil" else "Lanjut")
     }
 }
 

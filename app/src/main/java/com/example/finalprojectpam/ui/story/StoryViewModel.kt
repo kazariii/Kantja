@@ -30,30 +30,48 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
     private val _isStoryFinished = MutableStateFlow(false)
     val isStoryFinished: StateFlow<Boolean> = _isStoryFinished.asStateFlow()
 
+    // Consequence text yang sedang ditampilkan; null = tidak ada, tampilkan choices
+    private val _consequence = MutableStateFlow<ConsequenceState?>(null)
+    val consequence: StateFlow<ConsequenceState?> = _consequence.asStateFlow()
+
     fun loadStory(fileName: String) {
         val story = storyRepository.loadStory(fileName)
         _currentStory.value = story
         _currentScene.value = story?.scenes?.minByOrNull { it.order }
         _totalScore.value = 0
         _isStoryFinished.value = false
+        _consequence.value = null
     }
 
     fun onChoiceSelected(choice: Choice) {
         _totalScore.value += choice.scoreValue
 
         val story = _currentStory.value ?: return
-        if (choice.nextSceneId == null) {
-            _isStoryFinished.value = true
-            saveScore(story)
-            return
-        }
+        val nextScene = if (choice.nextSceneId != null)
+            story.scenes.find { it.id == choice.nextSceneId }
+        else null
 
-        val nextScene = story.scenes.find { it.id == choice.nextSceneId }
-        if (nextScene == null || nextScene.isEndScene) {
+        val isLast = nextScene == null || nextScene.isEndScene
+
+        // Tahan di consequence dulu, baru lanjut setelah user tap "Lanjut"
+        _consequence.value = ConsequenceState(
+            text = choice.consequence,
+            scoreGained = choice.scoreValue,
+            nextScene = nextScene,
+            isLastScene = isLast
+        )
+
+        if (isLast) saveScore(story)
+    }
+
+    fun onConsequenceDismissed() {
+        val state = _consequence.value ?: return
+        _consequence.value = null
+
+        if (state.isLastScene) {
             _isStoryFinished.value = true
-            saveScore(story)
         } else {
-            _currentScene.value = nextScene
+            _currentScene.value = state.nextScene
         }
     }
 
@@ -68,3 +86,10 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 }
+
+data class ConsequenceState(
+    val text: String,
+    val scoreGained: Int,
+    val nextScene: com.example.finalprojectpam.data.model.Scene?,
+    val isLastScene: Boolean
+)
