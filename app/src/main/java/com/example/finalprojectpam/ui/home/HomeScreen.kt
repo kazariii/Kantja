@@ -71,8 +71,8 @@ fun HomeScreen(
                 active = "beranda",
                 onBeranda = {},
                 onPrestasi = { navController.navigate(Screen.Score.route) },
-                onBuat     = {},
-                onLangkah  = { navController.navigate(Screen.Score.route) },
+                onBuat     = { navController.navigate(Screen.Library.route) },
+                onLangkah  = { navController.navigate(Screen.Langkah.route) },
                 onProfil   = { navController.navigate(Screen.Profile.route) }
             )
         }

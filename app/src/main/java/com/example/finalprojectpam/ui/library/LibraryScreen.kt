@@ -79,7 +79,7 @@ fun LibraryScreen(
             LibraryBottomBar(
                 onBeranda  = { navController.popBackStack() },
                 onPrestasi = { navController.navigate(Screen.Score.route) },
-                onLangkah  = {},
+                onLangkah  = { navController.navigate(Screen.Langkah.route) },
                 onProfil   = { navController.navigate(Screen.Profile.route) }
             )
         }

@@ -88,7 +88,7 @@ fun ScoreScreen(navController: NavController, viewModel: ScoreViewModel = viewMo
             PrestasiBottomBar(
                 onBeranda  = { navController.navigate(Screen.Home.route) { popUpTo(Screen.Home.route) { inclusive = true } } },
                 onPrestasi = {},
-                onLangkah  = {},
+                onLangkah  = { navController.navigate(Screen.Langkah.route) },
                 onProfil   = { navController.navigate(Screen.Profile.route) }
             )
         }

@@ -59,7 +59,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = vi
             ProfilBottomBar(
                 onBeranda  = { navController.navigate(Screen.Home.route) { popUpTo(Screen.Home.route) { inclusive = true } } },
                 onPrestasi = { navController.navigate(Screen.Score.route) },
-                onLangkah  = {},
+                onLangkah  = { navController.navigate(Screen.Langkah.route) },
                 onProfil   = {}
             )
         }
