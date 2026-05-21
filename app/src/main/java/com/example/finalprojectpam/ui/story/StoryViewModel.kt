@@ -41,7 +41,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
     val totalScenes: StateFlow<Int> = _totalScenes.asStateFlow()
 
     fun loadStory(fileName: String) {
-        val story = storyRepository.loadStory(fileName)
+        val story = storyRepository.loadStory("stories/$fileName.json")
         _currentStory.value = story
         _currentScene.value = story?.scenes?.minByOrNull { it.order }
         _totalScore.value = 0

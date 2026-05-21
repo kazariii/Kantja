@@ -279,7 +279,7 @@ fun HomeScreen(
                     ) {
                         itemsIndexed(stories) { index, story ->
                             StoryCard(story, index) {
-                                navController.navigate(Screen.Story.createRoute("stories/${story.id}.json"))
+                                navController.navigate(Screen.Story.createRoute(story.id))
                             }
                         }
                     }

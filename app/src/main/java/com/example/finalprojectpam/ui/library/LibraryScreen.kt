@@ -195,7 +195,7 @@ fun LibraryScreen(
                     colorIndex = index,
                     onClick = {
                         navController.navigate(
-                            Screen.Story.createRoute("stories/${story.id}.json")
+                            Screen.Story.createRoute(story.id)
                         )
                     }
                 )
