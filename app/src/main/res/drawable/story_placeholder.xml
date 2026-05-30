@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/story_placeholder.xml
+     Gunakan ini sebagai fallback jika thumbnailRes atau imageRes tidak ditemukan.
+     Warna bisa disesuaikan dengan tema aplikasi Kantja. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:angle="135"
+        android:endColor="#A8D8EA"
+        android:startColor="#EAF6FF"
+        android:type="linear" />
+
+    <corners android:radius="12dp" />
+
+</shape>

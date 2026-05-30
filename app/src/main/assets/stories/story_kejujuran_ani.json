@@ -1,0 +1,80 @@
+{
+  "id": "story_kejujuran_ani",
+  "title": "Kejujuran Ani",
+  "description": "Bantu Ani memilih untuk selalu jujur dalam berbagai situasi! Belajar bahwa kejujuran adalah nilai paling berharga.",
+  "category": "kejujuran",
+  "difficulty": "mudah",
+  "thumbnailRes": "story_ani",
+  "maxScore": 70,
+  "scenes": [
+    {
+      "id": "scene_001",
+      "order": 1,
+      "narrative": "Saat ulangan Matematika, Ani tidak bisa menjawab soal nomor 5. Tiba-tiba Ani melihat kertas jawaban Sari terjatuh tepat di sampingnya. Soal nomor 5 terlihat jelas! Pak Guru sedang membalikkan badan menulis di papan tulis. Apa yang dilakukan Ani?",
+      "imageRes": "scene_kelas_ulangan",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_001a",
+          "text": "Lihat jawaban Sari diam-diam",
+          "consequence": "Ani menyontek jawaban Sari. Nilainya bagus, tapi hati Ani tidak tenang. Saat Pak Guru memujinya, Ani merasa malu dan tidak bangga sama sekali.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_002"
+        },
+        {
+          "id": "choice_001b",
+          "text": "Kembalikan kertas Sari dan kerjakan sendiri",
+          "consequence": "Ani mengetuk meja Sari pelan dan mengembalikan kertasnya. Pak Guru melihat dan tersenyum bangga. Ani mengerjakan sendiri dengan jujur, hasilnya memang belum sempurna, tapi hatinya lega!",
+          "scoreValue": 20,
+          "nextSceneId": "scene_002"
+        }
+      ]
+    },
+    {
+      "id": "scene_002",
+      "order": 2,
+      "narrative": "Pulang sekolah, Ani tidak sengaja memecahkan vas bunga kesayangan Ibu saat bermain di rumah. Ibu sedang di dapur dan belum tahu. Ani bisa saja pura-pura tidak tahu. Tapi vas itu adalah hadiah dari Nenek. Apa yang dilakukan Ani?",
+      "imageRes": "scene_rumah_vas",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_002a",
+          "text": "Pura-pura tidak tahu dan diam saja",
+          "consequence": "Ani menyembunyikan pecahan vas di balik sofa. Saat Ibu menemukannya, Ibu sangat sedih. Ani merasa bersalah berlipat-lipat karena sudah bohong dan membuat Ibu tambah kecewa.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_003"
+        },
+        {
+          "id": "choice_002b",
+          "text": "Jujur ke Ibu dan minta maaf",
+          "consequence": "Ani menghampiri Ibu dengan mata berkaca-kaca dan mengaku jujur. Ibu memang sedih kehilangan vasnya, tapi Ibu memeluk Ani dan berkata 'Ibu bangga kamu jujur, Sayang. Itu jauh lebih berharga dari vas apapun.'",
+          "scoreValue": 20,
+          "nextSceneId": "scene_003"
+        }
+      ]
+    },
+    {
+      "id": "scene_003",
+      "order": 3,
+      "narrative": "Di warung Bu Nani, Ani membayar jajan Rp 3.000 dengan uang Rp 5.000. Bu Nani yang sedang sibuk malah memberikan kembalian Rp 12.000 — kelebihan Rp 10.000! Bu Nani tidak sadar karena warungnya sedang ramai. Apa yang dilakukan Ani?",
+      "imageRes": "scene_warung",
+      "isEndScene": true,
+      "choices": [
+        {
+          "id": "choice_003a",
+          "text": "Simpan saja, kan Bu Nani tidak tahu",
+          "consequence": "Ani menyimpan uang kelebihan itu. Tapi setiap kali lewat warung Bu Nani, Ani selalu menghindari pandangan Bu Nani. Uang Rp 10.000 itu terasa tidak enak dipakai.",
+          "scoreValue": -10,
+          "nextSceneId": null
+        },
+        {
+          "id": "choice_003b",
+          "text": "Kembalikan kelebihan uangnya ke Bu Nani",
+          "consequence": "Ani mengembalikan Rp 10.000 kepada Bu Nani. Bu Nani terkejut dan sangat berterima kasih! Bu Nani memberikan Ani sebungkus kue gratis. Lebih dari itu, seluruh kampung tahu Ani anak yang jujur dan semua orang menyukainya.",
+          "scoreValue": 30,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}
