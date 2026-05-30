@@ -1,0 +1,80 @@
+{
+  "id": "story_menabung_zaki",
+  "title": "Tabungan Impian Zaki",
+  "description": "Bantu Zaki menabung untuk membeli sepeda impiannya! Tantangan lebih berat menanti — bisakah Zaki tetap disiplin dan konsisten menabung?",
+  "category": "menabung",
+  "difficulty": "sulit",
+  "thumbnailRes": "story_zaki",
+  "maxScore": 70,
+  "scenes": [
+    {
+      "id": "scene_001",
+      "order": 1,
+      "narrative": "Zaki punya target menabung Rp 300.000 untuk membeli sepeda dalam 3 bulan. Minggu ini Zaki berhasil menabung Rp 50.000. Tapi tiba-tiba ada promo game online yang Zaki suka — paket koin seharga Rp 45.000 yang hanya berlaku 24 jam! Teman-teman sudah pada beli dan mengajak Zaki main bareng. Apa yang dilakukan Zaki?",
+      "imageRes": "scene_game_promo",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_001a",
+          "text": "Beli paket koin, lumayan buat main bareng teman",
+          "consequence": "Zaki membeli paket koin dan seru main bareng teman. Tapi tabungannya tinggal Rp 5.000. Zaki harus mulai hampir dari nol lagi minggu depan, padahal target sepeda masih jauh.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_002"
+        },
+        {
+          "id": "choice_001b",
+          "text": "Tahan godaan, tabungan sepeda lebih penting",
+          "consequence": "Zaki menutup notifikasi promo itu dan memasukkan Rp 50.000 ke celengannya. Zaki bilang ke teman-teman 'Aku skip dulu, lagi nabung buat sepeda.' Teman-teman menghormati keputusan Zaki dan malah ikut menyemangati!",
+          "scoreValue": 20,
+          "nextSceneId": "scene_002"
+        }
+      ]
+    },
+    {
+      "id": "scene_002",
+      "order": 2,
+      "narrative": "Bulan kedua, Zaki sudah punya tabungan Rp 150.000 — setengah jalan menuju sepeda! Tapi Ayah tiba-tiba bilang uang belanja keluarga kurang minggu ini dan bertanya apakah Zaki bisa meminjamkan tabungannya sementara, nanti akan dikembalikan bulan depan. Ini situasi yang berat. Apa yang dilakukan Zaki?",
+      "imageRes": "scene_diskusi_ayah",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_002a",
+          "text": "Pinjamkan saja semua tabungan ke Ayah",
+          "consequence": "Zaki memberikan semua tabungannya. Ayah sangat terbantu. Tapi bulan depan ternyata uang pengembalian dari Ayah terlambat dan Zaki harus menunda target sepedanya lebih lama. Zaki belajar pentingnya punya dana darurat terpisah.",
+          "scoreValue": 10,
+          "nextSceneId": "scene_003"
+        },
+        {
+          "id": "choice_002b",
+          "text": "Berdiskusi dengan Ayah, tawarkan meminjam sebagian saja",
+          "consequence": "Zaki dengan sopan bernegosiasi: 'Ayah, aku bisa pinjamkan Rp 50.000 dulu, sisanya buat target tabunganku ya.' Ayah bangga melihat Zaki yang sudah bisa berpikir dewasa. Mereka mencari solusi bersama dan keduanya senang.",
+          "scoreValue": 20,
+          "nextSceneId": "scene_003"
+        }
+      ]
+    },
+    {
+      "id": "scene_003",
+      "order": 3,
+      "narrative": "Akhirnya bulan ketiga tiba! Zaki sudah punya tabungan Rp 280.000 — kurang Rp 20.000 lagi dari target! Tapi Zaki menemukan sepeda bekas yang bagus seharga Rp 250.000, lebih murah Rp 50.000 dari sepeda baru. Teman Zaki menyarankan beli yang bekas saja dan sisa uangnya bisa buat beli aksesoris. Apa keputusan Zaki?",
+      "imageRes": "scene_toko_sepeda",
+      "isEndScene": true,
+      "choices": [
+        {
+          "id": "choice_003a",
+          "text": "Beli sepeda bekas sekarang, sudah tidak sabar!",
+          "consequence": "Zaki membeli sepeda bekas. Memang bisa langsung pakai dan ada sisa uang, tapi sebulan kemudian ada bagian yang rusak dan biaya perbaikannya hampir Rp 30.000. Ternyata membeli barang bekas perlu dicek lebih teliti dulu.",
+          "scoreValue": 10,
+          "nextSceneId": null
+        },
+        {
+          "id": "choice_003b",
+          "text": "Sabar menabung 1-2 minggu lagi untuk beli yang baru",
+          "consequence": "Zaki bersabar menabung Rp 20.000 lagi selama 2 minggu. Saat akhirnya membeli sepeda baru, Zaki merasakan kepuasan luar biasa karena mencapai target persis seperti yang direncanakan! Disiplin dan kesabaran Zaki membuahkan hasil terbaik.",
+          "scoreValue": 30,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

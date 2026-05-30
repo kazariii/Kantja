@@ -1,0 +1,80 @@
+{
+  "id": "story_bijak_dina",
+  "title": "Dina yang Bijak",
+  "description": "Temani Dina menghadapi berbagai pilihan dalam sehari! Belajar berpikir sebelum bertindak dan membuat keputusan yang bijak.",
+  "category": "bijak",
+  "difficulty": "sedang",
+  "thumbnailRes": "story_dina",
+  "maxScore": 70,
+  "scenes": [
+    {
+      "id": "scene_001",
+      "order": 1,
+      "narrative": "Dina mendapat tugas menggambar poster tentang lingkungan hidup. Dina punya dua pilihan: mengerjakan sendiri dari awal dengan serius, atau menyalin gambar teman yang sudah jadi karena waktunya mepet. Besok poster dikumpulkan dan Dina baru ingat malam ini!",
+      "imageRes": "scene_belajar_malam",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_001a",
+          "text": "Salin gambar teman saja, lebih cepat",
+          "consequence": "Dina menyalin gambar temannya. Posternya memang selesai cepat, tapi saat Bu Guru bertanya 'Dina, ceritakan postermu!', Dina tidak bisa menjawab karena bukan hasil karyanya sendiri. Bu Guru kecewa.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_002"
+        },
+        {
+          "id": "choice_001b",
+          "text": "Kerjakan sendiri meski sampai malam",
+          "consequence": "Dina begadung sampai jam 9 malam mengerjakan posternya dengan sepenuh hati. Hasilnya tidak sempurna, tapi saat Bu Guru bertanya, Dina bisa menjelaskan setiap bagian dengan bangga. Bu Guru sangat terkesan!",
+          "scoreValue": 20,
+          "nextSceneId": "scene_002"
+        }
+      ]
+    },
+    {
+      "id": "scene_002",
+      "order": 2,
+      "narrative": "Di jalan pulang sekolah, Dina melihat dompet tergeletak di trotoar. Di dalamnya ada uang Rp 200.000 dan KTP seseorang bernama Pak Hendra dengan alamat yang tertera jelas. Tidak ada orang lain di sekitar sana. Apa yang dilakukan Dina?",
+      "imageRes": "scene_jalan_dompet",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_002a",
+          "text": "Ambil uangnya, toh tidak ada yang lihat",
+          "consequence": "Dina mengambil uang itu dan meninggalkan dompetnya. Sepanjang jalan pulang, Dina terus terbayang wajah Pak Hendra yang mungkin sedang panik mencari dompetnya. Uang itu terasa tidak nyaman di kantong Dina.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_003"
+        },
+        {
+          "id": "choice_002b",
+          "text": "Antar dompet ke rumah Pak Hendra",
+          "consequence": "Dina melihat alamat di KTP dan mengantar dompet ke rumah Pak Hendra yang tidak jauh dari sana. Pak Hendra yang sudah tua terlihat sangat lega dan mengucap syukur berkali-kali. Dina pulang dengan hati yang ringan dan bahagia.",
+          "scoreValue": 20,
+          "nextSceneId": "scene_003"
+        }
+      ]
+    },
+    {
+      "id": "scene_003",
+      "order": 3,
+      "narrative": "Dina dan teman-teman berencana piknik ke taman. Tapi pagi hari, langit mendung dan kelihatan mau hujan. Teman-teman tetap mau pergi dan mengajak Dina ikut. Mama menyarankan Dina untuk tidak pergi karena mungkin hujan deras. Apa keputusan Dina?",
+      "imageRes": "scene_langit_mendung",
+      "isEndScene": true,
+      "choices": [
+        {
+          "id": "choice_003a",
+          "text": "Ikut teman-teman, masa-masa seperti ini tidak boleh dilewatkan",
+          "consequence": "Dina pergi ikut teman-teman. Benar saja, hujan deras datang saat mereka di tengah taman. Semua basah kuyup dan Dina pulang dengan kedinginan. Malamnya Dina demam dan tidak bisa sekolah 2 hari.",
+          "scoreValue": 10,
+          "nextSceneId": null
+        },
+        {
+          "id": "choice_003b",
+          "text": "Ikuti saran Mama, tunda dulu dan reschedule",
+          "consequence": "Dina menghubungi teman-teman dan mengusulkan pindah hari. Awalnya ada yang kecewa, tapi saat hujan deras benar-benar turun siang itu, semua teman berterima kasih pada Dina yang sudah berpikir lebih jauh. Mereka piknik di hari cerah berikutnya dan jauh lebih seru!",
+          "scoreValue": 30,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "story_berbagi_rafa",
+  "title": "Berbagi Itu Indah",
+  "description": "Ikuti perjalanan Rafa belajar makna berbagi yang sesungguhnya! Berbagi bukan berarti rugi, tapi justru membuat hati bahagia.",
+  "category": "berbagi",
+  "difficulty": "mudah",
+  "thumbnailRes": "story_rafa",
+  "maxScore": 70,
+  "scenes": [
+    {
+      "id": "scene_001",
+      "order": 1,
+      "narrative": "Rafa membawa bekal roti isi keju spesial buatan Mama — ada 4 potong! Di kelas, teman sebangku Rafa bernama Kevin terlihat hanya membawa air putih tanpa bekal. Kevin tidak berkata apa-apa, tapi perutnya terdengar keroncongan. Apa yang dilakukan Rafa?",
+      "imageRes": "scene_kelas_bekal",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_001a",
+          "text": "Makan rotinya sendiri, ini bekalku",
+          "consequence": "Rafa memakan semua rotinya sendiri. Memang kenyang, tapi melihat Kevin yang menahan lapar membuat Rafa tidak bisa menikmati rotinya dengan nyaman.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_002"
+        },
+        {
+          "id": "choice_001b",
+          "text": "Tawarkan 2 potong roti untuk Kevin",
+          "consequence": "Rafa tersenyum dan menggeser kotak bekalnya ke Kevin. 'Nih, kita makan bareng yuk!' Kevin terharu dan mereka makan bersama dengan gembira. Rotinya terasa lebih enak dimakan berdua!",
+          "scoreValue": 20,
+          "nextSceneId": "scene_002"
+        }
+      ]
+    },
+    {
+      "id": "scene_002",
+      "order": 2,
+      "narrative": "Waktu istirahat tiba! Rafa ingin main ayunan, tapi antriannya panjang. Saat giliran Rafa tiba dan sedang asik bermain, ada adik kelas bernama Mia yang kelihatan sudah menunggu lama sekali. Mia tampak lelah dan hampir menangis. Apa yang dilakukan Rafa?",
+      "imageRes": "scene_taman_bermain",
+      "isEndScene": false,
+      "choices": [
+        {
+          "id": "choice_002a",
+          "text": "Terus main, ini giliran Rafa",
+          "consequence": "Rafa tetap bermain hingga bel berbunyi. Mia akhirnya tidak kebagian main. Rafa memang sudah capek ayunan, tapi melihat Mia pergi dengan lesu membuat hati Rafa sedikit tidak enak.",
+          "scoreValue": -10,
+          "nextSceneId": "scene_003"
+        },
+        {
+          "id": "choice_002b",
+          "text": "Ajak Mia bergantian main bersama",
+          "consequence": "Rafa turun dan melambaikan tangan ke Mia. 'Sini, kita gantian ya! Aku dorong kamu dulu!' Mia girang sekali. Mereka malah jadi teman baru dan bermain bersama lebih seru dari main sendiri!",
+          "scoreValue": 20,
+          "nextSceneId": "scene_003"
+        }
+      ]
+    },
+    {
+      "id": "scene_003",
+      "order": 3,
+      "narrative": "Rafa punya koleksi 20 buku cerita bergambar yang sudah dibaca semua. Guru kelas bercerita bahwa perpustakaan sekolah kekurangan buku dan banyak anak yang ingin membaca tapi tidak punya. Mama bilang Rafa boleh memutuskan sendiri mau diapakan buku-bukunya. Apa pilihan Rafa?",
+      "imageRes": "scene_perpustakaan",
+      "isEndScene": true,
+      "choices": [
+        {
+          "id": "choice_003a",
+          "text": "Simpan semua buku, takut rusak atau hilang",
+          "consequence": "Buku-buku Rafa tersimpan rapi di rak. Tapi buku itu hanya jadi pajangan karena Rafa sudah baca semua. Sayang sekali cerita indah di dalamnya tidak bisa dinikmati teman-teman lain.",
+          "scoreValue": 10,
+          "nextSceneId": null
+        },
+        {
+          "id": "choice_003b",
+          "text": "Sumbangkan buku ke perpustakaan sekolah",
+          "consequence": "Rafa membawa kardus berisi buku-bukunya ke sekolah. Saat melihat teman-teman antri meminjam bukunya dan tertawa membaca cerita di dalamnya, Rafa merasakan kebahagiaan yang jauh lebih besar dari sekadar menyimpan buku sendiri!",
+          "scoreValue": 30,
+          "nextSceneId": null
+        }
+      ]
+    }
+  ]
+}
