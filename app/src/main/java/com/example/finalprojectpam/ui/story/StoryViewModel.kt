@@ -59,7 +59,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
             story.scenes.find { it.id == choice.nextSceneId }
         else null
 
-        val isLast = nextScene == null || nextScene.isEndScene
+        val isLast = choice.nextSceneId == null
 
         _consequence.value = ConsequenceState(
             text = choice.consequence,

@@ -11,7 +11,7 @@
       "id": "scene_001",
       "order": 1,
       "narrative": "Rafa membawa bekal roti isi keju spesial buatan Mama — ada 4 potong! Di kelas, teman sebangku Rafa bernama Kevin terlihat hanya membawa air putih tanpa bekal. Kevin tidak berkata apa-apa, tapi perutnya terdengar keroncongan. Apa yang dilakukan Rafa?",
-      "imageRes": "scene_kelas_bekal",
+      "imageRes": "story_rafa",
       "isEndScene": false,
       "choices": [
         {
@@ -34,7 +34,7 @@
       "id": "scene_002",
       "order": 2,
       "narrative": "Waktu istirahat tiba! Rafa ingin main ayunan, tapi antriannya panjang. Saat giliran Rafa tiba dan sedang asik bermain, ada adik kelas bernama Mia yang kelihatan sudah menunggu lama sekali. Mia tampak lelah dan hampir menangis. Apa yang dilakukan Rafa?",
-      "imageRes": "scene_taman_bermain",
+      "imageRes": "story_rafa_phase2",
       "isEndScene": false,
       "choices": [
         {
@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Rafa punya koleksi 20 buku cerita bergambar yang sudah dibaca semua. Guru kelas bercerita bahwa perpustakaan sekolah kekurangan buku dan banyak anak yang ingin membaca tapi tidak punya. Mama bilang Rafa boleh memutuskan sendiri mau diapakan buku-bukunya. Apa pilihan Rafa?",
-      "imageRes": "scene_perpustakaan",
+      "imageRes": "story_rafa_phase2",
       "isEndScene": true,
       "choices": [
         {

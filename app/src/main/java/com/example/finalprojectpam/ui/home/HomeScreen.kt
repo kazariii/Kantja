@@ -16,6 +16,9 @@ import androidx.compose.ui.draw.*
 import androidx.compose.ui.geometry.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.*
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -412,9 +415,10 @@ private fun BottomTab(
 @Composable
 private fun StoryCard(story: Story, index: Int, onClick: () -> Unit) {
     val bg = storyCardColors[index % storyCardColors.size]
-    val emoji = when (story.category.lowercase()) {
-        "kejujuran" -> "⭐"; "menabung" -> "🪙"; "berbagi" -> "❤️"; "bijak" -> "💡"
-        else        -> "📖"
+    val context = LocalContext.current
+    val thumbnailRes = remember(story.thumbnailRes) {
+        context.resources.getIdentifier(story.thumbnailRes, "drawable", context.packageName)
+            .takeIf { it != 0 }
     }
 
     Box(
@@ -436,7 +440,16 @@ private fun StoryCard(story: Story, index: Int, onClick: () -> Unit) {
                     .background(Color.White.copy(alpha = 0.4f)),
                 contentAlignment = Alignment.Center
             ) {
-                Text(emoji, fontSize = 42.sp)
+                if (thumbnailRes != null) {
+                    Image(
+                        painter = painterResource(thumbnailRes),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                } else {
+                    Text("📖", fontSize = 42.sp)
+                }
             }
 
             Spacer(Modifier.height(8.dp))

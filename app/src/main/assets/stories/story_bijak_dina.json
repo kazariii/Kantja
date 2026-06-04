@@ -11,7 +11,7 @@
       "id": "scene_001",
       "order": 1,
       "narrative": "Dina mendapat tugas menggambar poster tentang lingkungan hidup. Dina punya dua pilihan: mengerjakan sendiri dari awal dengan serius, atau menyalin gambar teman yang sudah jadi karena waktunya mepet. Besok poster dikumpulkan dan Dina baru ingat malam ini!",
-      "imageRes": "scene_belajar_malam",
+      "imageRes": "story_dina",
       "isEndScene": false,
       "choices": [
         {
@@ -34,7 +34,7 @@
       "id": "scene_002",
       "order": 2,
       "narrative": "Di jalan pulang sekolah, Dina melihat dompet tergeletak di trotoar. Di dalamnya ada uang Rp 200.000 dan KTP seseorang bernama Pak Hendra dengan alamat yang tertera jelas. Tidak ada orang lain di sekitar sana. Apa yang dilakukan Dina?",
-      "imageRes": "scene_jalan_dompet",
+      "imageRes": "story_dina_phase2",
       "isEndScene": false,
       "choices": [
         {
@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Dina dan teman-teman berencana piknik ke taman. Tapi pagi hari, langit mendung dan kelihatan mau hujan. Teman-teman tetap mau pergi dan mengajak Dina ikut. Mama menyarankan Dina untuk tidak pergi karena mungkin hujan deras. Apa keputusan Dina?",
-      "imageRes": "scene_langit_mendung",
+      "imageRes": "story_dina_phase2",
       "isEndScene": true,
       "choices": [
         {

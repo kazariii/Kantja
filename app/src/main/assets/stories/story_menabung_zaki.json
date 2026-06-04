@@ -11,7 +11,7 @@
       "id": "scene_001",
       "order": 1,
       "narrative": "Zaki punya target menabung Rp 300.000 untuk membeli sepeda dalam 3 bulan. Minggu ini Zaki berhasil menabung Rp 50.000. Tapi tiba-tiba ada promo game online yang Zaki suka — paket koin seharga Rp 45.000 yang hanya berlaku 24 jam! Teman-teman sudah pada beli dan mengajak Zaki main bareng. Apa yang dilakukan Zaki?",
-      "imageRes": "scene_game_promo",
+      "imageRes": "story_zaki",
       "isEndScene": false,
       "choices": [
         {
@@ -34,7 +34,7 @@
       "id": "scene_002",
       "order": 2,
       "narrative": "Bulan kedua, Zaki sudah punya tabungan Rp 150.000 — setengah jalan menuju sepeda! Tapi Ayah tiba-tiba bilang uang belanja keluarga kurang minggu ini dan bertanya apakah Zaki bisa meminjamkan tabungannya sementara, nanti akan dikembalikan bulan depan. Ini situasi yang berat. Apa yang dilakukan Zaki?",
-      "imageRes": "scene_diskusi_ayah",
+      "imageRes": "story_zaki",
       "isEndScene": false,
       "choices": [
         {
@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Akhirnya bulan ketiga tiba! Zaki sudah punya tabungan Rp 280.000 — kurang Rp 20.000 lagi dari target! Tapi Zaki menemukan sepeda bekas yang bagus seharga Rp 250.000, lebih murah Rp 50.000 dari sepeda baru. Teman Zaki menyarankan beli yang bekas saja dan sisa uangnya bisa buat beli aksesoris. Apa keputusan Zaki?",
-      "imageRes": "scene_toko_sepeda",
+      "imageRes": "story_zaki_phase2",
       "isEndScene": true,
       "choices": [
         {

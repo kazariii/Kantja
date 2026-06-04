@@ -14,6 +14,9 @@ import androidx.compose.ui.draw.*
 import androidx.compose.ui.geometry.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.*
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -47,9 +50,21 @@ fun StoryScreen(
     val consequence     by viewModel.consequence.collectAsState()
     val sceneIndex      by viewModel.sceneIndex.collectAsState()
     val totalScenes     by viewModel.totalScenes.collectAsState()
+    val context = LocalContext.current
 
     LaunchedEffect(storyFileName) {
         viewModel.loadStory(storyFileName)
+    }
+
+    val storyBackgroundRes = remember(currentScene?.imageRes, currentStory?.thumbnailRes) {
+        val resName = currentScene?.imageRes?.takeIf { it.isNotBlank() }
+            ?: currentStory?.thumbnailRes
+        if (resName.isNullOrBlank()) {
+            null
+        } else {
+            context.resources.getIdentifier(resName, "drawable", context.packageName)
+                .takeIf { it != 0 }
+        }
     }
 
     if (isStoryFinished) {
@@ -64,14 +79,29 @@ fun StoryScreen(
     Box(
         Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    listOf(Color(0xFFFFCB9E), Color(0xFFFFD9A8), Color(0xFFF5C99E))
-                )
-            )
+            .background(BgCream)
     ) {
-        // Ground
-        GroundDecoration(Modifier.fillMaxSize())
+        if (storyBackgroundRes != null) {
+            Image(
+                painter = painterResource(storyBackgroundRes),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            Color(0x99000000),
+                            Color(0x33000000),
+                            Color(0xCC000000)
+                        )
+                    )
+                )
+        )
 
         // Progress dots — top, di samping kanan tombol back
         StoryProgressBar(

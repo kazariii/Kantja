@@ -15,6 +15,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -210,6 +213,11 @@ fun LibraryScreen(
 private fun LibraryStoryCard(story: Story, colorIndex: Int, onClick: () -> Unit) {
     val bgColor = cardColors[colorIndex % cardColors.size]
     val emoji   = categoryEmoji(story.category)
+    val context = LocalContext.current
+    val thumbnailRes = remember(story.thumbnailRes) {
+        context.resources.getIdentifier(story.thumbnailRes, "drawable", context.packageName)
+            .takeIf { it != 0 }
+    }
 
     Box(
         Modifier
@@ -229,7 +237,16 @@ private fun LibraryStoryCard(story: Story, colorIndex: Int, onClick: () -> Unit)
                     .background(Color.White.copy(alpha = 0.4f)),
                 contentAlignment = Alignment.Center
             ) {
-                Text(emoji, fontSize = 46.sp)
+                if (thumbnailRes != null) {
+                    Image(
+                        painter = painterResource(thumbnailRes),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                } else {
+                    Text(emoji, fontSize = 46.sp)
+                }
             }
 
             Spacer(Modifier.height(8.dp))

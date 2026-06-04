@@ -11,7 +11,7 @@
       "id": "scene_001",
       "order": 1,
       "narrative": "Hari ini Budi menerima uang saku Rp 50.000 dari Ibu. Di perjalanan ke sekolah, Budi melewati toko mainan dan melihat mainan robot keren seharga Rp 45.000. Budi sangat menginginkannya! Tapi Budi juga ingat ingin menabung untuk membeli sepeda. Apa yang harus dilakukan Budi?",
-      "imageRes": "scene_toko_mainan",
+      "imageRes": "story_budi",
       "isEndScene": false,
       "choices": [
         {
@@ -34,7 +34,7 @@
       "id": "scene_002",
       "order": 2,
       "narrative": "Di kantin sekolah, perut Budi berbunyi keroncongan. Ada dua pilihan: membeli nasi bungkus bergizi seharga Rp 10.000, atau membeli es krim dan keripik seharga Rp 25.000. Keduanya terlihat menggoda. Mana yang dipilih Budi?",
-      "imageRes": "scene_kantin",
+      "imageRes": "story_budi_phase2",
       "isEndScene": false,
       "choices": [
         {
@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Pulang sekolah, teman Budi bernama Dito kelihatan sedih. Ternyata Dito lupa membawa uang dan tidak bisa membeli buku tulis untuk PR besok. Budi masih punya sisa uang. Apa yang dilakukan Budi?",
-      "imageRes": "scene_teman",
+      "imageRes": "story_budi_phase2",
       "isEndScene": true,
       "choices": [
         {

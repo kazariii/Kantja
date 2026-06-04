@@ -11,7 +11,7 @@
       "id": "scene_001",
       "order": 1,
       "narrative": "Saat ulangan Matematika, Ani tidak bisa menjawab soal nomor 5. Tiba-tiba Ani melihat kertas jawaban Sari terjatuh tepat di sampingnya. Soal nomor 5 terlihat jelas! Pak Guru sedang membalikkan badan menulis di papan tulis. Apa yang dilakukan Ani?",
-      "imageRes": "scene_kelas_ulangan",
+      "imageRes": "story_ani",
       "isEndScene": false,
       "choices": [
         {
@@ -34,7 +34,7 @@
       "id": "scene_002",
       "order": 2,
       "narrative": "Pulang sekolah, Ani tidak sengaja memecahkan vas bunga kesayangan Ibu saat bermain di rumah. Ibu sedang di dapur dan belum tahu. Ani bisa saja pura-pura tidak tahu. Tapi vas itu adalah hadiah dari Nenek. Apa yang dilakukan Ani?",
-      "imageRes": "scene_rumah_vas",
+      "imageRes": "story_ani_phase2",
       "isEndScene": false,
       "choices": [
         {
@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Di warung Bu Nani, Ani membayar jajan Rp 3.000 dengan uang Rp 5.000. Bu Nani yang sedang sibuk malah memberikan kembalian Rp 12.000 — kelebihan Rp 10.000! Bu Nani tidak sadar karena warungnya sedang ramai. Apa yang dilakukan Ani?",
-      "imageRes": "scene_warung",
+      "imageRes": "story_ani_phase2",
       "isEndScene": true,
       "choices": [
         {
