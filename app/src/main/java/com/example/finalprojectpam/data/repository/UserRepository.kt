@@ -2,8 +2,8 @@ package com.example.finalprojectpam.data.repository
 
 import com.example.finalprojectpam.data.model.ScoreRecord
 import com.example.finalprojectpam.data.model.UserProfile
+import com.example.finalprojectpam.data.local.session.SimpleSession
 import com.example.finalprojectpam.data.remote.SupabaseClient
-import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Order
 import java.text.SimpleDateFormat
@@ -17,16 +17,16 @@ class UserRepository {
     private val supabase = SupabaseClient.client
 
     suspend fun getUserProfile(): UserProfile? {
-        val userId = supabase.auth.currentUserOrNull()?.id ?: return null
-        return supabase.postgrest["profiles"]
+        val userId = SimpleSession.currentUserId() ?: return null
+        return supabase.postgrest["app_users"]
             .select { filter { eq("id", userId) } }
             .decodeSingleOrNull<UserProfile>()
     }
 
     suspend fun createOrUpdateProfile(name: String) {
-        val userId = supabase.auth.currentUserOrNull()?.id ?: return
+        val userId = SimpleSession.currentUserId() ?: return
         val current = getUserProfile()
-        supabase.postgrest["profiles"].upsert(
+        supabase.postgrest["app_users"].upsert(
             UserProfile(
                 id = userId,
                 name = name,
@@ -38,7 +38,7 @@ class UserRepository {
     }
 
     suspend fun saveScoreRecord(storyId: String, storyTitle: String, score: Int, maxScore: Int) {
-        val userId = supabase.auth.currentUserOrNull()?.id ?: return
+        val userId = SimpleSession.currentUserId() ?: return
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
         sdf.timeZone = TimeZone.getTimeZone("UTC")
         supabase.postgrest["score_records"].insert(
@@ -53,7 +53,7 @@ class UserRepository {
             )
         )
         val current = getUserProfile() ?: UserProfile(id = userId)
-        supabase.postgrest["profiles"].upsert(
+        supabase.postgrest["app_users"].upsert(
             current.copy(
                 totalScore = current.totalScore + score,
                 storiesCompleted = current.storiesCompleted + 1
@@ -62,7 +62,7 @@ class UserRepository {
     }
 
     suspend fun getAllScores(): List<ScoreRecord> {
-        val userId = supabase.auth.currentUserOrNull()?.id ?: return emptyList()
+        val userId = SimpleSession.currentUserId() ?: return emptyList()
         return supabase.postgrest["score_records"]
             .select {
                 filter { eq("user_id", userId) }

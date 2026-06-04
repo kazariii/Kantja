@@ -36,7 +36,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             _authState.value = if (result.isSuccess) {
                 AuthState.Success
             } else {
-                AuthState.Error("Email atau password salah")
+                AuthState.Error(result.exceptionOrNull().toAuthMessage("Login gagal"))
             }
         }
     }
@@ -62,12 +62,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             _authState.value = if (result.isSuccess) {
                 AuthState.Success
             } else {
-                val msg = result.exceptionOrNull()?.message ?: "Gagal mendaftar"
-                AuthState.Error(if (msg.contains("already registered", ignoreCase = true)) {
-                    "Email sudah terdaftar"
-                } else {
-                    "Gagal mendaftar. Coba lagi."
-                })
+                AuthState.Error(result.exceptionOrNull().toAuthMessage("Gagal mendaftar"))
             }
         }
     }
@@ -84,4 +79,14 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun isLoggedIn(): Boolean = repository.isLoggedIn()
+
+    private fun Throwable?.toAuthMessage(defaultMessage: String): String {
+        val msg = this?.message ?: return defaultMessage
+        return when {
+            msg.contains("email sudah terdaftar", ignoreCase = true) -> "Email sudah terdaftar"
+            msg.contains("email belum terdaftar", ignoreCase = true) -> "Email belum terdaftar"
+            msg.contains("password salah", ignoreCase = true) -> "Password salah"
+            else -> "$defaultMessage: $msg"
+        }
+    }
 }

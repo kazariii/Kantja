@@ -32,3 +32,9 @@ local.properties
 *.jks
 *.keystore
 .claude/
+
+.codex/
+
+.agents/
+
+AGENTS.md

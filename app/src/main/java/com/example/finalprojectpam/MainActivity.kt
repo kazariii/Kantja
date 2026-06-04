@@ -12,7 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.finalprojectpam.data.remote.SupabaseClient
+import com.example.finalprojectpam.data.local.session.SimpleSession
 import com.example.finalprojectpam.ui.auth.AuthViewModel
 import com.example.finalprojectpam.ui.auth.LoginScreen
 import com.example.finalprojectpam.ui.auth.RegisterScreen
@@ -25,11 +25,11 @@ import com.example.finalprojectpam.ui.langkah.LangkahScreen
 import com.example.finalprojectpam.ui.library.LibraryScreen
 import com.example.finalprojectpam.ui.story.StoryScreen
 import com.example.finalprojectpam.ui.theme.KancaTheme
-import io.github.jan.supabase.auth.auth
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SimpleSession.init(applicationContext)
         enableEdgeToEdge()
         setContent {
             KancaTheme {
@@ -45,7 +45,7 @@ fun KancaApp() {
     val authViewModel: AuthViewModel = viewModel()
 
     val startDestination = remember {
-        if (SupabaseClient.client.auth.currentUserOrNull() != null) {
+        if (SimpleSession.isLoggedIn()) {
             Screen.Home.route
         } else {
             Screen.Login.route
