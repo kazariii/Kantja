@@ -38,6 +38,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = vi
     val userProfile    by viewModel.userProfile.collectAsState()
     val isLoggedOut    by viewModel.isLoggedOut.collectAsState()
     var showEditDialog by remember { mutableStateOf(false) }
+    var placeholderDialog by remember { mutableStateOf<SettingsPlaceholder?>(null) }
 
     // Navigasi ke Login setelah logout
     LaunchedEffect(isLoggedOut) {
@@ -168,14 +169,24 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = vi
                         label = "Notifikasi",
                         subtitle = "Pengingat baca harian",
                         showDivider = true,
-                        onClick = {}
+                        onClick = {
+                            placeholderDialog = SettingsPlaceholder(
+                                title = "Notifikasi",
+                                message = "Pengaturan notifikasi belum tersedia saat ini."
+                            )
+                        }
                     )
                     SettingsRow(
                         icon = "🎵",
                         label = "Suara & Musik",
                         subtitle = "Kontrol volume narasi",
                         showDivider = false,
-                        onClick = {}
+                        onClick = {
+                            placeholderDialog = SettingsPlaceholder(
+                                title = "Suara & Musik",
+                                message = "Pengaturan suara dan musik belum tersedia saat ini."
+                            )
+                        }
                     )
                 }
             }
@@ -267,9 +278,22 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = vi
             onDismiss = { showEditDialog = false }
         )
     }
+
+    placeholderDialog?.let { dialog ->
+        PlaceholderDialog(
+            title = dialog.title,
+            message = dialog.message,
+            onDismiss = { placeholderDialog = null }
+        )
+    }
 }
 
 // ── Composables ────────────────────────────────────────────────────────────────
+
+private data class SettingsPlaceholder(
+    val title: String,
+    val message: String
+)
 
 @Composable
 private fun Chip(label: String, bgColor: Color, textColor: Color) {
@@ -369,6 +393,30 @@ private fun EditNameDialog(
         dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text("Batal", color = TextSoft, fontWeight = FontWeight.Bold)
+            }
+        }
+    )
+}
+
+@Composable
+private fun PlaceholderDialog(
+    title: String,
+    message: String,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        containerColor = Color.White,
+        shape = RoundedCornerShape(22.dp),
+        title = {
+            Text(title, fontWeight = FontWeight.ExtraBold, color = Brown)
+        },
+        text = {
+            Text(message, fontWeight = FontWeight.Bold, color = TextSoft)
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Tutup", color = OrangeDeep, fontWeight = FontWeight.ExtraBold)
             }
         }
     )
