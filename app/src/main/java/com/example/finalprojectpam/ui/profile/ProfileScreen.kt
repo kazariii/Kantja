@@ -36,6 +36,7 @@ private val Divider    = Color(0xFFF0E1C4)
 @Composable
 fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = viewModel()) {
     val userProfile    by viewModel.userProfile.collectAsState()
+    val badgeCount     by viewModel.unlockedBadgeCount.collectAsState()
     val isLoggedOut    by viewModel.isLoggedOut.collectAsState()
     var showEditDialog by remember { mutableStateOf(false) }
     var placeholderDialog by remember { mutableStateOf<SettingsPlaceholder?>(null) }
@@ -129,7 +130,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = vi
                                 textColor = Brown
                             )
                             Chip(
-                                label = "🌟 $stories badge",
+                                label = "🌟 $badgeCount badge",
                                 bgColor = Color(0xFFFBD5DB),
                                 textColor = Color(0xFFA85C6E)
                             )
