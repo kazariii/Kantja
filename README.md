@@ -1,8 +1,5 @@
 # 🐯 KANTJA — Aplikasi Literasi Finansial Cerita Interaktif Anak Usia Dini
 
-<p align="center">
-  <img src="app/src/main/res/drawable/ic_launcher_foreground.xml" alt="Kantja Logo" width="100"/>
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Android-brightgreen?logo=android" />
