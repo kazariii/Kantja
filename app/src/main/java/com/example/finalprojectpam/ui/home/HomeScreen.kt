@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.finalprojectpam.data.model.ScoreRecord
 import com.example.finalprojectpam.data.model.Story
 import com.example.finalprojectpam.ui.auth.AuthViewModel
 import com.example.finalprojectpam.ui.navigation.Screen
@@ -52,7 +53,11 @@ fun HomeScreen(
     authViewModel: AuthViewModel
 ) {
     val stories by viewModel.stories.collectAsState()
+    val scoreRecords by viewModel.scoreRecords.collectAsState()
     val userProfile by viewModel.userProfile.collectAsState()
+    val storyToStart = remember(stories, scoreRecords) {
+        findStoryToStart(stories, scoreRecords)
+    }
 
     val firstName = userProfile?.name?.split(" ")?.firstOrNull() ?: "Kanca"
     val totalScore = userProfile?.totalScore ?: 0
@@ -180,7 +185,11 @@ fun HomeScreen(
                                 Modifier
                                     .clip(RoundedCornerShape(999.dp))
                                     .background(Orange)
-                                    .clickable { /* scroll to stories */ }
+                                    .clickable {
+                                        storyToStart?.let {
+                                            navController.navigate(Screen.Story.createRoute(it.id))
+                                        }
+                                    }
                                     .padding(horizontal = 20.dp, vertical = 10.dp)
                             ) {
                                 Text(
@@ -307,6 +316,21 @@ fun HomeScreen(
 }
 
 // ── Bottom nav bar ─────────────────────────────────────────────────────────────
+
+private fun findStoryToStart(stories: List<Story>, scoreRecords: List<ScoreRecord>): Story? {
+    if (stories.isEmpty()) return null
+
+    val bestScoreByStory = scoreRecords
+        .groupBy { it.storyId }
+        .mapValues { (_, records) -> records.maxOf { it.score } }
+
+    return stories.firstOrNull { story ->
+        val bestScore = bestScoreByStory[story.id]
+        bestScore == null || bestScore < story.maxScore
+    } ?: scoreRecords.firstOrNull()?.let { latestScore ->
+        stories.firstOrNull { it.id == latestScore.storyId }
+    } ?: stories.last()
+}
 
 @Composable
 private fun KancaBottomBar(
