@@ -253,7 +253,6 @@ fun LangkahScreen(
                     // Per kategori jika ada data
                     if (allScores.isNotEmpty()) {
                         Spacer(Modifier.height(14.dp))
-                        val categoryScores = allScores.groupBy { it.storyTitle }
                         val best = allScores.maxByOrNull {
                             (it.score.coerceAtLeast(0) * 100) / it.maxScore.coerceAtLeast(1)
                         }
@@ -297,6 +296,93 @@ fun LangkahScreen(
                 }
             }
 
+            // ── Riwayat Cerita ──────────────────────────────────────────────
+            if (allScores.isNotEmpty()) {
+                Spacer(Modifier.height(18.dp))
+
+                Text(
+                    "Riwayat Cerita",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Brown
+                )
+
+                Spacer(Modifier.height(10.dp))
+
+                allScores.forEach { record ->
+                    val pct = (record.score.coerceAtLeast(0) * 100) / record.maxScore.coerceAtLeast(1)
+                    val scoreColor = when {
+                        pct >= 80 -> Color(0xFF4CAF50)
+                        pct >= 50 -> OrangeDeep
+                        else      -> Color(0xFFE53935)
+                    }
+                    val badgeEmoji = when {
+                        pct >= 80 -> "🏆"
+                        pct >= 50 -> "⭐"
+                        else      -> "📖"
+                    }
+
+                    Surface(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 8.dp),
+                        shape = RoundedCornerShape(16.dp),
+                        color = Color.White,
+                        shadowElevation = 1.dp
+                    ) {
+                        Row(
+                            Modifier.padding(14.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            // Badge icon
+                            Box(
+                                Modifier
+                                    .size(44.dp)
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .background(Color(0xFFFFE7B8)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(badgeEmoji, fontSize = 22.sp)
+                            }
+
+                            Spacer(Modifier.width(12.dp))
+
+                            // Judul & tanggal
+                            Column(Modifier.weight(1f)) {
+                                Text(
+                                    record.storyTitle,
+                                    fontSize = 13.sp,
+                                    fontWeight = FontWeight.ExtraBold,
+                                    color = Brown
+                                )
+                                Text(
+                                    record.completedAt.take(10),
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = TextSoft
+                                )
+                            }
+
+                            // Skor
+                            Column(horizontalAlignment = Alignment.End) {
+                                Text(
+                                    "${record.score}/${record.maxScore}",
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.ExtraBold,
+                                    color = scoreColor
+                                )
+                                Text(
+                                    "$pct%",
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = scoreColor.copy(alpha = 0.7f)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
             Spacer(Modifier.height(24.dp))
         }
     }
@@ -314,9 +400,7 @@ private fun MascotBanner() {
             .clip(RoundedCornerShape(24.dp))
             .background(
                 Brush.linearGradient(
-                    listOf(Color(0xFFFFC078), Orange),
-                    start = Offset(0f, 0f),
-                    end = Offset(Float.MAX_VALUE, Float.MAX_VALUE)
+                    listOf(Color(0xFFFFC078), Orange)
                 )
             )
     ) {
@@ -497,7 +581,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
         }
         ySteps.forEach { v ->
             val yPos = padT + (1f - v / 100f) * innerH
-            // grid line
             drawLine(
                 color = gridColor,
                 start = Offset(padL, yPos),
@@ -507,7 +590,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
                     floatArrayOf(4.dp.toPx(), 3.dp.toPx())
                 )
             )
-            // y label
             drawIntoCanvas { canvas ->
                 canvas.nativeCanvas.drawText(
                     "${v.toInt()}",
@@ -519,7 +601,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
         }
 
         if (points.size < 2) {
-            // Single dot
             if (points.size == 1) {
                 val x = padL + innerW / 2f
                 val y = padT + (1f - points[0].value / 100f) * innerH
@@ -528,11 +609,9 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
             return@Canvas
         }
 
-        // X positions
         val xs = points.mapIndexed { i, _ -> padL + i * innerW / (points.size - 1).toFloat() }
         val ys = points.map { padT + (1f - it.value / 100f) * innerH }
 
-        // Background bars
         val barW = (innerW / points.size) * 0.6f
         xs.forEach { x ->
             drawRoundRect(
@@ -544,7 +623,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
             )
         }
 
-        // Fill area below line
         val fillPath = Path().apply {
             moveTo(xs[0], ys[0])
             for (i in 1 until points.size) {
@@ -564,7 +642,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
             )
         )
 
-        // Smooth bezier line
         val linePath = Path().apply {
             moveTo(xs[0], ys[0])
             for (i in 1 until points.size) {
@@ -578,13 +655,11 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
             style       = Stroke(3.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round)
         )
 
-        // Dots
         xs.forEachIndexed { i, x ->
             drawCircle(dotFill, 4.dp.toPx(), Offset(x, ys[i]))
             drawCircle(Color.White, 2.dp.toPx(), Offset(x, ys[i]))
         }
 
-        // Tooltip on best (max) point
         val bestIdx = points.indexOfFirst { it.value == points.maxOf { p -> p.value } }
         if (bestIdx >= 0) {
             val tx = xs[bestIdx]; val ty = ys[bestIdx]
@@ -596,7 +671,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
                 size        = Size(tipW, tipH),
                 cornerRadius = CornerRadius(10.dp.toPx())
             )
-            // Tooltip tail
             val tailPath = Path().apply {
                 moveTo(tx - 4.dp.toPx(), ty - 6.dp.toPx())
                 lineTo(tx,               ty - 1.dp.toPx())
@@ -604,7 +678,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
                 close()
             }
             drawPath(tailPath, tooltipColor)
-            // Tooltip text
             val tipPaint = NativePaint().apply {
                 textSize  = 10.dp.toPx()
                 typeface  = Typeface.DEFAULT_BOLD
@@ -622,7 +695,6 @@ private fun ScoreLineChart(points: List<ChartPoint>, modifier: Modifier = Modifi
             }
         }
 
-        // X labels
         val xLabelPaint = NativePaint().apply {
             textSize  = 9.dp.toPx()
             typeface  = Typeface.DEFAULT_BOLD

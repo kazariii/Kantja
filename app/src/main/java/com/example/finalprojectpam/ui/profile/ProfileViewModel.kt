@@ -31,10 +31,16 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
         loadProfile()
     }
 
+    // Dipanggil ulang setiap kali ProfileScreen ditampilkan,
+    // agar storiesCompleted & totalScore selalu up-to-date.
+    fun refreshProfile() {
+        loadProfile()
+    }
+
     private fun loadProfile() {
         viewModelScope.launch {
             _userProfile.value = userRepository.getUserProfile()
-            val scores = userRepository.getAllScores()
+            val scores  = userRepository.getAllScores()
             val stories = storyRepository.loadAllStories()
             _unlockedBadgeCount.value = stories.count { story ->
                 scores.any { it.storyId == story.id }

@@ -41,6 +41,12 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = vi
     var showEditDialog by remember { mutableStateOf(false) }
     var placeholderDialog by remember { mutableStateOf<SettingsPlaceholder?>(null) }
 
+    // Refresh data dari Supabase setiap kali screen ini ditampilkan,
+    // sehingga storiesCompleted & totalScore selalu terbaru setelah cerita selesai.
+    LaunchedEffect(Unit) {
+        viewModel.refreshProfile()
+    }
+
     // Navigasi ke Login setelah logout
     LaunchedEffect(isLoggedOut) {
         if (isLoggedOut) {
