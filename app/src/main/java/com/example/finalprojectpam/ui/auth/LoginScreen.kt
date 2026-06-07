@@ -1,7 +1,6 @@
 package com.example.finalprojectpam.ui.auth
 
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -39,8 +38,6 @@ private val OrangeLight = Color(0xFFFFF4E0)
 private val Brown       = Color(0xFF5C3A1E)
 private val Brown2      = Color(0xFF7A4A2A)
 private val TextSoft    = Color(0xFF8A6A4F)
-private val Muted       = Color(0xFFB89A7C)
-private val DividerClr  = Color(0xFFF0E1C4)
 
 @Composable
 fun LoginScreen(navController: NavController, viewModel: AuthViewModel) {
@@ -219,41 +216,6 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel) {
                     }
                 }
 
-                // Divider
-                Row(
-                    Modifier.padding(vertical = 18.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    HorizontalDivider(Modifier.weight(1f), color = DividerClr)
-                    Text(
-                        "  atau lanjut dengan  ",
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = Muted
-                    )
-                    HorizontalDivider(Modifier.weight(1f), color = DividerClr)
-                }
-
-                // Google button (placeholder – Google Auth belum diimplementasi)
-                OutlinedButton(
-                    onClick = {},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp),
-                    shape = RoundedCornerShape(999.dp),
-                    border = BorderStroke(2.dp, DividerClr),
-                    colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.White)
-                ) {
-                    GoogleDot(Modifier.size(18.dp))
-                    Spacer(Modifier.width(10.dp))
-                    Text(
-                        "Lanjut dengan Google",
-                        fontWeight = FontWeight.ExtraBold,
-                        fontSize = 14.sp,
-                        color = Brown2
-                    )
-                }
-
                 Spacer(Modifier.height(40.dp))
             }
         }
@@ -417,24 +379,6 @@ private fun KimoMascot(modifier: Modifier) {
             },
             Color(0xFF3A2410),
             style = Stroke(w * .03f, cap = StrokeCap.Round)
-        )
-    }
-}
-
-@Composable
-private fun GoogleDot(modifier: Modifier) {
-    Box(
-        modifier
-            .clip(CircleShape)
-            .background(Color(0xFF4285F4)),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "G",
-            color = Color.White,
-            fontWeight = FontWeight.ExtraBold,
-            fontSize = 11.sp,
-            lineHeight = 11.sp
         )
     }
 }
