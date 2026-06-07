@@ -6,6 +6,8 @@ import com.example.finalprojectpam.data.local.session.SimpleSession
 import com.example.finalprojectpam.data.remote.SupabaseClient
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Order
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -25,16 +27,11 @@ class UserRepository {
 
     suspend fun createOrUpdateProfile(name: String) {
         val userId = SimpleSession.currentUserId() ?: return
-        val current = getUserProfile()
-        supabase.postgrest["app_users"].upsert(
-            UserProfile(
-                id = userId,
-                name = name,
-                avatarRes = current?.avatarRes ?: "avatar_default",
-                totalScore = current?.totalScore ?: 0,
-                storiesCompleted = current?.storiesCompleted ?: 0
-            )
-        )
+        supabase.postgrest["app_users"].update(
+            UserProfileNameUpdate(name = name)
+        ) {
+            filter { eq("id", userId) }
+        }
     }
 
     suspend fun saveScoreRecord(storyId: String, storyTitle: String, score: Int, maxScore: Int) {
@@ -52,13 +49,15 @@ class UserRepository {
                 completedAt = sdf.format(Date())
             )
         )
-        val current = getUserProfile() ?: UserProfile(id = userId)
-        supabase.postgrest["app_users"].upsert(
-            current.copy(
+        val current = getUserProfile() ?: return
+        supabase.postgrest["app_users"].update(
+            UserProgressUpdate(
                 totalScore = current.totalScore + score,
                 storiesCompleted = current.storiesCompleted + 1
             )
-        )
+        ) {
+            filter { eq("id", userId) }
+        }
     }
 
     suspend fun getAllScores(): List<ScoreRecord> {
@@ -71,3 +70,14 @@ class UserRepository {
             .decodeList<ScoreRecord>()
     }
 }
+
+@Serializable
+private data class UserProfileNameUpdate(
+    val name: String
+)
+
+@Serializable
+private data class UserProgressUpdate(
+    @SerialName("total_score") val totalScore: Int,
+    @SerialName("stories_completed") val storiesCompleted: Int
+)
