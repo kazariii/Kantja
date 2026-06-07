@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Pulang sekolah, teman Budi bernama Dito kelihatan sedih. Ternyata Dito lupa membawa uang dan tidak bisa membeli buku tulis untuk PR besok. Budi masih punya sisa uang. Apa yang dilakukan Budi?",
-      "imageRes": "story_budi_phase2",
+      "imageRes": "story_budi_phase3",
       "isEndScene": true,
       "choices": [
         {

@@ -34,7 +34,7 @@
       "id": "scene_002",
       "order": 2,
       "narrative": "Bulan kedua, Zaki sudah punya tabungan Rp 150.000 — setengah jalan menuju sepeda! Tapi Ayah tiba-tiba bilang uang belanja keluarga kurang minggu ini dan bertanya apakah Zaki bisa meminjamkan tabungannya sementara, nanti akan dikembalikan bulan depan. Ini situasi yang berat. Apa yang dilakukan Zaki?",
-      "imageRes": "story_zaki",
+      "imageRes": "story_zaki_family_help",
       "isEndScene": false,
       "choices": [
         {
@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Akhirnya bulan ketiga tiba! Zaki sudah punya tabungan Rp 280.000 — kurang Rp 20.000 lagi dari target! Tapi Zaki menemukan sepeda bekas yang bagus seharga Rp 250.000, lebih murah Rp 50.000 dari sepeda baru. Teman Zaki menyarankan beli yang bekas saja dan sisa uangnya bisa buat beli aksesoris. Apa keputusan Zaki?",
-      "imageRes": "story_zaki_phase2",
+      "imageRes": "story_zaki_phase3",
       "isEndScene": true,
       "choices": [
         {

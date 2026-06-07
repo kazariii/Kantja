@@ -57,7 +57,7 @@
       "id": "scene_003",
       "order": 3,
       "narrative": "Rafa punya koleksi 20 buku cerita bergambar yang sudah dibaca semua. Guru kelas bercerita bahwa perpustakaan sekolah kekurangan buku dan banyak anak yang ingin membaca tapi tidak punya. Mama bilang Rafa boleh memutuskan sendiri mau diapakan buku-bukunya. Apa pilihan Rafa?",
-      "imageRes": "story_rafa_phase2",
+      "imageRes": "story_rafa_phase3",
       "isEndScene": true,
       "choices": [
         {
