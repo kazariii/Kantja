@@ -273,8 +273,8 @@ git clone https://github.com/nailakeisha/PAMprojectAkhir.git
 Dikembangkan sebagai **Final Project** mata kuliah Pemrograman Aplikasi Mobile (PAM)  
 **Universitas Brawijaya** — Mei 2026
 
-| Nama | GitHub |
-|---|---|
+| Nama | NIM | Github |
+|---|---|---|
 | *Ahmad Muflih Azhari* | *245150701111030* | *@kazariii* |
 | *Sefina Ayudia Syauqi* | *2451507071110* | *@sefinay* |
 | *Naila Keisha Sasongko* | *245150707111054* | *nailakeisha* |
