@@ -275,10 +275,10 @@ Dikembangkan sebagai **Final Project** mata kuliah Pemrograman Aplikasi Mobile (
 
 | Nama | NIM | Github |
 |---|---|---|
-| *Ahmad Muflih Azhari* | *245150701111030* | *@kazariii* |
-| *Sefina Ayudia Syauqi* | *2451507071110* | *@sefinay* |
-| *Naila Keisha Sasongko* | *245150707111054* | *nailakeisha* |
-| *Oase Bimasena Ilhamaziiz* | *245150707111059* | *@wadedogs* |
+| Ahmad Muflih Azhari | 245150701111030 | [@kazariii](https://github.com/kazariii) |
+| Sefina Ayudia Syauqi | 2451507071110 | [@sefinay](https://github.com/sefinaay) |
+| Naila Keisha Sasongko | 245150707111054 | [@nailakeisha](https://github.com/nailakeisha) |
+| Oase Bimasena Ilhamaziiz | 245150707111059 | [@wadedogs](https://github.com/wadedogs) |
 
 
 ---
